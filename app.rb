@@ -7,7 +7,12 @@ class App < Sinatra::Base
   end
 
   post '/' do
-    text_from_user = params[:user_text]
+    # instead of this
+    # text_from_user = params[:user_text]
+
+    # can use this and we can call it and its methods from the results.erb view
+    # params[:user_text] - from the '/:user_text'
+    @analyzed_text = TextAnalyzer.new(params[:user_text])
 
     erb :results
   end
